@@ -4,11 +4,6 @@ import CounterWithHooks from'./components/CounterWithHooks';
 import './App.css';
 
 
-// To do list:
-// toggle -> change btn name start -> stop [x]
-// Reset -> stop counting [x]
-
-
 class App extends Component {
 
 	render() {
