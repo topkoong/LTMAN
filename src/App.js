@@ -11,7 +11,7 @@ class App extends Component {
 			<div className="app__container">
 				<header className="header">
 					<p>
-						ITMan - Coding assesment
+						ITMan - Coding assessment
 					</p>
 				</header>
 				<div>
