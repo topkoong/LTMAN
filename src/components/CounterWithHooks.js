@@ -1,30 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { is } from 'css-select';
 
 const CounterWithHooks = () => {
 	let timerId = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
 
+
+	// When the toggle function is called it will change the value of isActive to be the opposite of what it currently is.
+
 	function toggle() {
 		setIsActive(!isActive);
 	}
 
-	function resetCount() {
-		setCount(0);
-		clearInterval(timerId);
+	function startCount() {
 		timerId = setInterval(() => {
 			setCount(count => count + 1);
 		}, 1000);
 	}
 
+	function resetCount() {
+		setCount(0);
+	}
+
+	// detect when isActive is true and start the timer inside of that function
+
 	useEffect(() => {
-		if (isActive) {
-			timerId = setInterval(() => {
-				setCount(count => count + 1);
-			}, 1000);
-		} else if (!isActive && count !== 0) {
+		if(isActive) startCount();
+		else if(!isActive && count !== 0) {
 			clearInterval(timerId);
-		}
+		} 
 		return () => clearInterval(timerId);
 	}, [isActive, count]);
 

@@ -4,35 +4,39 @@ class Counter extends Component {
 	state = {
 		isActive: false,
 		count: 0,
-		timerId: null,
 		delay: 1000,
 	};
+
+	counter = () => {
+		this.timerId = setInterval(() => {
+			this.setState({
+				count: this.state.count + 1,
+			});
+		}, this.state.delay);
+	}
 
 	startCount = () => {
 		this.setState(state => {
 			if (state.isActive) {
 				clearInterval(this.timerId);
 			} else {
-				this.timerId = setInterval(() => {
-					this.setState({
-						count: this.state.count + 1,
-					});
-				}, this.state.delay);
+				this.counter();
 			}
 			return { isActive: !state.isActive };
 		});
 	};
 
 	resetCount = () => {
-		clearInterval(this.timerId);
-		this.setState({
-			count: 0,
-		});
-		this.timerId = setInterval(() => {
+		if (this.state.isActive && this.timerId) {
+			clearInterval(this.timerId);
 			this.setState({
-				count: this.state.count + 1,
+				count: 0
 			});
-		}, this.state.delay);
+			this.counter();
+		}
+		this.setState({
+			count: 0
+		});
 	};
 
 	// Prevent Memory Leaks from happening
