@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { is } from 'css-select';
 
 const CounterWithHooks = () => {
 	let timerId = null;
