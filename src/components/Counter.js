@@ -6,7 +6,6 @@ class Counter extends Component {
 		count: 0,
 		timerId: null,
 		delay: 1000,
-		remaining: 0
 	};
 
 	startCount = () => {
