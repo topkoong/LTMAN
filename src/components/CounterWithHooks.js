@@ -5,19 +5,18 @@ const CounterWithHooks = () => {
     const [isActive, setIsActive] = useState(false);
 
     function toggle() {
-        setIsActive(!isActive);
+			setIsActive(!isActive);
     }
 
     function resetCount() {
-        setCount(0);
-        setIsActive(false);
+			setCount(0);
     }
 
     useEffect(() => {
         let timerId = null;
         if(isActive) {
             timerId = setInterval(() => {
-                setCount(count => count + 1);
+							setCount(count => count + 1);
             }, 1000);
         } else if (!isActive && count !== 0) {
             clearInterval(timerId);
