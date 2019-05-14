@@ -5,7 +5,8 @@ class Counter extends Component {
 		isActive: false,
 		count: 0,
 		timerId: null,
-		startTime: null
+		delay: 1000,
+		remaining: 0
 	};
 
 	startCount = () => {
@@ -15,18 +16,24 @@ class Counter extends Component {
 			} else {
 				this.timerId = setInterval(() => {
 					this.setState({
-						count: this.state.count + 1
+						count: this.state.count + 1,
 					});
-				}, 1000);
+				}, this.state.delay);
 			}
 			return { isActive: !state.isActive };
 		});
 	};
 
 	resetCount = () => {
+		clearInterval(this.timerId);
 		this.setState({
-			count: 0
+			count: 0,
 		});
+		this.timerId = setInterval(() => {
+			this.setState({
+				count: this.state.count + 1,
+			});
+		}, this.state.delay);
 	};
 
 	// Prevent Memory Leaks from happening

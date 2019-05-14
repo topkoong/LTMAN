@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const CounterWithHooks = () => {
+	let timerId = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
 
@@ -10,10 +11,13 @@ const CounterWithHooks = () => {
 
 	function resetCount() {
 		setCount(0);
+		clearInterval(timerId);
+		timerId = setInterval(() => {
+			setCount(count => count + 1);
+		}, 1000);
 	}
 
 	useEffect(() => {
-		let timerId = null;
 		if (isActive) {
 			timerId = setInterval(() => {
 				setCount(count => count + 1);
