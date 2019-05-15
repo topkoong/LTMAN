@@ -38,9 +38,11 @@ class Counter extends Component {
 			});
 			this.incrementCount();
 		}
-		this.setState({
-			count: 0
-		});
+		else {
+			this.setState({
+				count: 0
+			});
+		}
 	};
 
 
