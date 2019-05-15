@@ -7,7 +7,7 @@ class Counter extends Component {
 		delay: 1000,
 	};
 
-	counter = () => {
+	incrementCount = () => {
 		this.timerId = setInterval(() => {
 			this.setState({
 				count: this.state.count + 1,
@@ -20,7 +20,7 @@ class Counter extends Component {
 			if (state.isActive) {
 				clearInterval(this.timerId);
 			} else {
-				this.counter();
+				this.incrementCount();
 			}
 			return { isActive: !state.isActive };
 		});
@@ -32,14 +32,12 @@ class Counter extends Component {
 			this.setState({
 				count: 0
 			});
-			this.counter();
+			this.incrementCount();
 		}
 		this.setState({
 			count: 0
 		});
 	};
-
-	// Prevent Memory Leaks from happening
 
 	componentWillUnmount() {
 		clearInterval(this.timerId);
