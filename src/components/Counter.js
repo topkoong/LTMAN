@@ -7,8 +7,12 @@ class Counter extends Component {
 		delay: 1000,
 	};
 
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
+
 	incrementCount = () => {
-		this.timerId = setInterval(() => {
+		this.timerID = setInterval(() => {
 			this.setState({
 				count: this.state.count + 1,
 			});
@@ -18,7 +22,7 @@ class Counter extends Component {
 	startCount = () => {
 		this.setState(state => {
 			if (state.isActive) {
-				clearInterval(this.timerId);
+				clearInterval(this.timerID);
 			} else {
 				this.incrementCount();
 			}
@@ -27,8 +31,8 @@ class Counter extends Component {
 	};
 
 	resetCount = () => {
-		if (this.state.isActive && this.timerId) {
-			clearInterval(this.timerId);
+		if (this.state.isActive && this.timerID) {
+			clearInterval(this.timerID);
 			this.setState({
 				count: 0
 			});
@@ -39,9 +43,7 @@ class Counter extends Component {
 		});
 	};
 
-	componentWillUnmount() {
-		clearInterval(this.timerId);
-	}
+
 
 	render() {
 		const { isActive } = this.state;

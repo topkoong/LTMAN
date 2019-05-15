@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 const CounterWithHooks = () => {
-	let timerId = null;
+	let timerID = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
 	const toggleStatus = () => setIsActive(!isActive);
 	const startCounter = () => {
-		timerId = setInterval(() => {
+		timerID = setInterval(() => {
 			setCount(count => count + 1);
 		}, 1000);
 	}
@@ -15,10 +15,10 @@ const CounterWithHooks = () => {
 	useEffect(() => {
 		if(isActive) startCounter();
 		else if(!isActive && count !== 0) {
-			clearInterval(timerId);
+			clearInterval(timerID);
 		}
 		// Specify how to clean up after this effect: 
-		return () => clearInterval(timerId);
+		return () => clearInterval(timerID);
 	}, [isActive]);
 
 	return (
