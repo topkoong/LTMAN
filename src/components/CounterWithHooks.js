@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const CounterWithHooks = () => {
+	const delay = 1000;
 	let timerID = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
@@ -8,7 +9,7 @@ const CounterWithHooks = () => {
 	const startCounter = () => {
 		timerID = setInterval(() => {
 			setCount(count => count + 1);
-		}, 1000);
+		}, delay);
 	}
 	const resetCounter = () => setCount(0);
 

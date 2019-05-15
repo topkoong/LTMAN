@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+const delay = 1000;
 
 class Counter extends Component {
 	state = {
 		isActive: false,
 		count: 0,
-		delay: 1000,
 	};
 
 	componentWillUnmount() {
@@ -16,7 +16,7 @@ class Counter extends Component {
 			this.setState({
 				count: this.state.count + 1,
 			});
-		}, this.state.delay);
+		}, delay);
 	}
 
 	startCount = () => {
