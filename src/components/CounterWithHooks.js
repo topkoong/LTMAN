@@ -4,22 +4,13 @@ const CounterWithHooks = () => {
 	let timerId = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
-	
-
-
-	// When the toggleStatus function is called it will change the value of isActive to be the opposite of what it currently is.
-
 	const toggleStatus = () => setIsActive(!isActive);
-
 	const startCounter = () => {
 		timerId = setInterval(() => {
 			setCount(count => count + 1);
 		}, 1000);
 	}
-
 	const resetCounter = () => setCount(0);
-
-	// Detect when isActive is true and start the timer inside of that function
 
 	useEffect(() => {
 		if(isActive) startCounter();
