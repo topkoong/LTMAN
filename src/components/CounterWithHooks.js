@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const CounterWithHooks = () => {
-	let timerId = null;
 	const [count, setCount] = useState(0);
 	const [isActive, setIsActive] = useState(false);
+	let timerId = useRef(null);
+
 
 
 	// When the toggle function is called it will change the value of isActive to be the opposite of what it currently is.
@@ -26,11 +27,11 @@ const CounterWithHooks = () => {
 
 	useEffect(() => {
 		if(isActive) startCount();
-		else if(!isActive && count !== 0) {
+		else {
 			clearInterval(timerId);
 		} 
 		return () => clearInterval(timerId);
-	}, [isActive, count]);
+	}, [isActive, timerId]);
 
 	return (
 		<div className="counter__container">
